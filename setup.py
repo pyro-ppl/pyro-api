@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 # Find version
-for line in open(os.path.join(PROJECT_PATH, 'pyro_api', 'version.py')):
+for line in open(os.path.join(PROJECT_PATH, 'pyroapi', 'version.py')):
     if line.startswith('__version__ = '):
         version = line.strip().split()[2][1:-1]
 
@@ -23,7 +23,7 @@ setup(
     name='pyro-api',
     version=version,
     description='Generic API for dispatch to Pyro backends.',
-    packages=find_packages(include=['pyro_api', 'pyro_api.*']),
+    packages=find_packages(include=['pyroapi', 'pyroapi.*']),
     url='https://github.com/pyro-ppl/pyro-api',
     author='Uber AI Labs',
     author_email='npradhan@uber.com',
