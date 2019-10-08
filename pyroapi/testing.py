@@ -8,7 +8,7 @@ observed data.
 
 from collections import OrderedDict
 
-from pyro_api.dispatch import distributions as dist, handlers, ops, pyro
+from pyroapi.dispatch import distributions as dist, handlers, ops, pyro
 
 MODELS = OrderedDict()
 

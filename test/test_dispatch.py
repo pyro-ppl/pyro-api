@@ -1,7 +1,7 @@
 import pytest
 
-from pyro_api import handlers, infer, pyro, pyro_backend
-from pyro_api.testing import MODELS
+from pyroapi import handlers, infer, pyro, pyro_backend
+from pyroapi.testing import MODELS
 
 pytestmark = pytest.mark.stage('unit')
 

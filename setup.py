@@ -22,7 +22,7 @@ except Exception as e:
 setup(
     name='pyro-api',
     version=version,
-    description='Pyro API for generic model dispatch.',
+    description='Generic API for dispatch to Pyro backends.',
     packages=find_packages(include=['pyro_api', 'pyro_api.*']),
     url='https://github.com/pyro-ppl/pyro-api',
     author='Uber AI Labs',
