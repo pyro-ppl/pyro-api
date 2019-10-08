@@ -1,0 +1,25 @@
+pyro-api.egg-info
+__pycache__/
+.ipynb_checkpoints/
+build
+
+# built / compiled
+*.pyc
+*.pyo
+/build
+/dist
+
+# IDE
+.idea
+.vscode
+*~
+
+# data files
+*.pdf
+pyro-api/.DS_Store
+
+# test related
+.pytest_cache
+
+# tmp files
+.*.swp
