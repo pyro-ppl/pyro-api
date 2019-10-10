@@ -25,33 +25,6 @@ def assert_ok(model, guide, elbo, *args, **kwargs):
         inference.step(*args, **kwargs)
 
 
-def assert_error(model, guide, elbo, match=None):
-    """
-    Assert that inference fails with an error.
-    """
-    pyro.get_param_store().clear()
-    adam = optim.Adam({"lr": 1e-6})
-    inference = infer.SVI(model,  guide, adam, elbo)
-    with pytest.raises((NotImplementedError, UserWarning, KeyError, ValueError, RuntimeError),
-                       match=match):
-        inference.step()
-
-
-def assert_warning(model, guide, elbo):
-    """
-    Assert that inference works but with a warning.
-    """
-    pyro.get_param_store().clear()
-    adam = optim.Adam({"lr": 1e-6})
-    inference = infer.SVI(model, guide, adam, elbo)
-    with warnings.catch_warnings(record=True) as w:
-        warnings.simplefilter("always")
-        inference.step()
-        assert len(w), 'No warnings were raised'
-        for warning in w:
-            print(warning)
-
-
 def test_generate_data(backend):
 
     def model(data=None):
@@ -223,18 +196,3 @@ def test_mean_field_ok(backend):
 
     elbo = infer.TraceMeanField_ELBO()
     assert_ok(model, guide, elbo)
-
-
-def test_mean_field_warn(backend):
-
-    def model():
-        x = pyro.sample("x", dist.Normal(0., 1.))
-        pyro.sample("y", dist.Normal(x, 1.))
-
-    def guide():
-        loc = pyro.param("loc", ops.tensor(0.))
-        y = pyro.sample("y", dist.Normal(loc, 1.))
-        pyro.sample("x", dist.Normal(y, 1.))
-
-    elbo = infer.TraceMeanField_ELBO()
-    assert_warning(model, guide, elbo)
