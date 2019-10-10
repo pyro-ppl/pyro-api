@@ -27,4 +27,5 @@ jobs:
           name: "unit tests"
           python: 3.6
           script:
+              - flake8
               - pytest -vs --tb=short
