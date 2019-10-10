@@ -3,8 +3,6 @@ import pytest
 from pyroapi import handlers, infer, pyro, pyro_backend
 from pyroapi.testing import MODELS
 
-pytestmark = pytest.mark.stage('unit')
-
 
 @pytest.mark.filterwarnings("ignore", category=UserWarning)
 @pytest.mark.parametrize('model', MODELS)
@@ -35,7 +33,7 @@ def test_model_sample(model, backend):
     with pyro_backend(backend), handlers.seed(rng_seed=2):
         f = MODELS[model]()
         model, model_args, model_kwargs = f['model'], f.get('model_args', ()), f.get('model_kwargs', {})
-        model(*model_args)
+        model(*model_args, **model_kwargs)
 
 
 @pytest.mark.parametrize('model', MODELS)
