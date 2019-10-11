@@ -35,7 +35,7 @@ setup(
             'pytest>=5.0',
             'pyro-ppl@https://api.github.com/repos/pyro-ppl/pyro/tarball/7caad72',
             'numpyro@https://api.github.com/repos/pyro-ppl/numpyro/tarball/7174846',
-            'funsor@https://api.github.com/repos/pyro-ppl/funsor/tarball/3d6197f',
+            'funsor@https://api.github.com/repos/pyro-ppl/funsor/tarball/7810696',
         ],
         'dev': ['ipython'],
     },

@@ -77,7 +77,7 @@ _ALIASES = {
         'distributions': 'funsor.distributions',
         'handlers': 'funsor.minipyro',
         'infer': 'funsor.minipyro',
-        'ops': 'funsor.ops',
+        'ops': 'funsor.compat.ops',
         'optim': 'funsor.minipyro',
         'pyro': 'funsor.minipyro',
     },
