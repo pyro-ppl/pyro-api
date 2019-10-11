@@ -1,8 +1,5 @@
-import warnings
-
 import pytest
 
-from funsor.testing import assert_close  # FIXME
 from pyroapi.dispatch import distributions as dist
 from pyroapi.dispatch import infer, ops, optim, pyro
 
@@ -157,7 +154,7 @@ def test_local_param_ok(backend, jit):
     # Check that pyro.param() can be called without init_value.
     expected = guide()
     actual = pyro.param("p")
-    assert_close(actual, expected)
+    assert ops.allclose(actual, expected)
 
 
 @pytest.mark.parametrize("jit", [False, True], ids=["py", "jit"])
