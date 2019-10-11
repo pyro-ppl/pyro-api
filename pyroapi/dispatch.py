@@ -50,7 +50,8 @@ def pyro_backend(*aliases, **new_backends):
         old_backends[name] = GenericModule.current_backend[name]
         GenericModule.current_backend[name] = new_backend
     try:
-        yield
+        with handlers.seed(rng_seed=1):
+            yield
     finally:
         for name, old_backend in old_backends.items():
             GenericModule.current_backend[name] = old_backend
