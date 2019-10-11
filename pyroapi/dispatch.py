@@ -1,6 +1,8 @@
 import importlib
 from contextlib import contextmanager
 
+DEFAULT_RNG_SEED = 1
+
 
 class GenericModule(object):
     """
@@ -50,7 +52,8 @@ def pyro_backend(*aliases, **new_backends):
         old_backends[name] = GenericModule.current_backend[name]
         GenericModule.current_backend[name] = new_backend
     try:
-        yield
+        with handlers.seed(rng_seed=DEFAULT_RNG_SEED):
+            yield
     finally:
         for name, old_backend in old_backends.items():
             GenericModule.current_backend[name] = old_backend
