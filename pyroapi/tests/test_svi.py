@@ -31,7 +31,6 @@ def test_generate_data(backend):
         return x
 
     data = model()
-    data = data.data
     assert data.shape == ()
 
 
@@ -45,7 +44,9 @@ def test_generate_data_plate(backend):
             x = pyro.sample("x", dist.Normal(loc, scale), obs=data)
         return x
 
-    data = model().data
+    data = model()
+    if type(data).__module__.startswith('funsor'):
+        pytest.xfail(reason='plate is an input, and does not appear in .shape')
     assert data.shape == (num_points,)
     mean = data.sum().item() / num_points
     assert 1.9 <= mean <= 2.1
