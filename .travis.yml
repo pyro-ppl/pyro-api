@@ -28,4 +28,4 @@ jobs:
           python: 3.6
           script:
               - flake8
-              - pytest -vs --tb=short
+              - pytest -vs --tb=short test
