@@ -116,15 +116,15 @@ def test_nested_plate_plate_ok(backend, jit):
 
     def model():
         loc = ops.tensor(3.0)
-        with pyro.plate("plate_outer", data.size(-1), dim=-1):
+        with pyro.plate("plate_outer", data.shape[-1], dim=-1):
             x = pyro.sample("x", dist.Normal(loc, 1.))
-            with pyro.plate("plate_inner", data.size(-2), dim=-2):
+            with pyro.plate("plate_inner", data.shape[-2], dim=-2):
                 pyro.sample("y", dist.Normal(x, 1.), obs=data)
 
     def guide():
         loc = pyro.param("loc", ops.tensor(0.))
         scale = pyro.param("scale", ops.tensor(1.))
-        with pyro.plate("plate_outer", data.size(-1), dim=-1):
+        with pyro.plate("plate_outer", data.shape[-1], dim=-1):
             pyro.sample("x", dist.Normal(loc, scale))
 
     Elbo = infer.JitTrace_ELBO if jit else infer.Trace_ELBO
@@ -165,14 +165,14 @@ def test_constraints(backend, jit):
     def model():
         locs = pyro.param("locs", ops.randn(3),
                           constraint=dist.constraints.real)
-        scales = pyro.param("scales", ops.randn(3).exp(),
+        scales = pyro.param("scales", ops.exp(ops.randn(3)),
                             constraint=dist.constraints.positive)
         p = ops.tensor([0.5, 0.3, 0.2])
         x = pyro.sample("x", dist.Categorical(p))
         pyro.sample("obs", dist.Normal(locs[x], scales[x]), obs=data)
 
     def guide():
-        q = pyro.param("q", ops.randn(3).exp(),
+        q = pyro.param("q", ops.exp(ops.randn(3)),
                        constraint=dist.constraints.simplex)
         pyro.sample("x", dist.Categorical(q))
 
