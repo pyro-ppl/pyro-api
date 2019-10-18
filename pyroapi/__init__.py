@@ -1,4 +1,4 @@
-from pyroapi.dispatch import distributions, handlers, infer, ops, optim, pyro, pyro_backend
+from pyroapi.dispatch import distributions, handlers, infer, ops, optim, pyro, pyro_backend, register_backend
 
 __all__ = [
     'distributions',
@@ -8,4 +8,5 @@ __all__ = [
     'optim',
     'pyro',
     'pyro_backend',
+    'register_backend',
 ]

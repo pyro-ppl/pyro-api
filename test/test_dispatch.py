@@ -1,6 +1,6 @@
 import pytest
 
-from pyroapi import handlers, infer, pyro, pyro_backend
+from pyroapi import handlers, infer, pyro, pyro_backend, register_backend
 from pyroapi.testing import MODELS
 
 
@@ -37,11 +37,28 @@ def test_model_sample(model, backend):
 
 
 @pytest.mark.parametrize('model', MODELS)
-@pytest.mark.parametrize('backend', ['funsor', 'minipyro', 'numpy', 'pyro'])
-@pytest.mark.xfail(reason='Not supported by backend.')
+@pytest.mark.parametrize('backend', [
+    pytest.param("funsor", marks=[pytest.mark.xfail(reason="not implemented")]),
+    'minipyro',
+    'numpy',
+    'pyro',
+])
 def test_trace_handler(model, backend):
     with pyro_backend(backend), handlers.seed(rng_seed=2):
         f = MODELS[model]()
         model, model_args, model_kwargs = f['model'], f.get('model_args', ()), f.get('model_kwargs', {})
         # should be implemented
+        handlers.trace(model).get_trace(*model_args, **model_kwargs)
+
+
+@pytest.mark.parametrize('model', MODELS)
+def test_register_backend(model):
+    register_backend("foo", {
+        "infer": "pyro.contrib.minipyro",
+        "optim": "pyro.contrib.minipyro",
+        "pyro": "pyro.contrib.minipyro",
+    })
+    with pyro_backend("foo"):
+        f = MODELS[model]()
+        model, model_args, model_kwargs = f['model'], f.get('model_args', ()), f.get('model_kwargs', {})
         handlers.trace(model).get_trace(*model_args, **model_kwargs)
