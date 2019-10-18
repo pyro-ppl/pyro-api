@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/pyro-ppl/pyro-api.svg?branch=master)](https://travis-ci.com/pyro-ppl/pyro-api)
 [![Latest Version](https://badge.fury.io/py/pyro-api.svg)](https://pypi.python.org/pypi/pyro-api)
-[![Documentation Status](https://readthedocs.org/projects/pyro-api/badge/?version=master)](http://pyro-api.readthedocs.io/en/stable/?badge=master)
+[![Documentation Status](https://readthedocs.org/projects/pyro-api/badge/?version=latest)](http://pyro-api.readthedocs.io/en/latest/?badge=master)
 
 # Pyro API
 
