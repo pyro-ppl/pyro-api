@@ -37,7 +37,11 @@ setup(
             'numpyro@https://api.github.com/repos/pyro-ppl/numpyro/tarball/master',
             'funsor@https://api.github.com/repos/pyro-ppl/funsor/tarball/master',
         ],
-        'dev': ['ipython'],
+        'dev': [
+            'sphinx>=2.0',
+            'sphinx_rtd_theme',
+            'ipython',
+        ],
     },
     long_description=long_description,
     long_description_content_type='text/markdown',
