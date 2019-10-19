@@ -28,8 +28,9 @@ setup(
     author='Uber AI Labs',
     author_email='npradhan@uber.com',
     install_requires=[],
-    # TODO: Change the dependency versions as needed.
     extras_require={
+        # PyPi does not like @ versions,
+        # so I comment out the 'test' section when uploading to pypi.
         'test': [
             'flake8',
             'pytest>=5.0',
