@@ -28,7 +28,7 @@ see how to use these by example:
         inference = infer.SVI(model, guide, adam, elbo)
         for step in range(10):
             loss = inference.step(*args, **kwargs)
-            print(f"step {step} loss = {loss}")
+            print("step {} loss = {}".format(step, loss))
 
 """
 import importlib
@@ -64,7 +64,8 @@ class GenericModule(object):
         try:
             return getattr(module, name)
         except AttributeError:
-            raise NotImplementedError(f'This Pyro backend does not implement {module_name}.{name}')
+            raise NotImplementedError('This Pyro backend does not implement {}.{}'
+                                      .format(module_name, name))
 
 
 @contextmanager
