@@ -74,7 +74,7 @@ def pyro_backend(*aliases, **new_backends):
     Context manager to set a custom backend for Pyro models.
 
     Backends can be specified either by name (for standard backends or backends
-    registered through :func:`register_backend` ) or by providing a dict
+    registered through :func:`register_backend` ) or by providing kwargs
     mapping module name to backend module name.  Standard backends include:
     pyro, minipyro, funsor, and numpy.
     """
