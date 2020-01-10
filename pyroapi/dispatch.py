@@ -1,3 +1,6 @@
+# Copyright Contributors to the Pyro project.
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Dispatching allows you to dynamically set a backend using :func:`pyro_backend`
 and to register new backends using :func:`register_backend` .  It's easiest to
