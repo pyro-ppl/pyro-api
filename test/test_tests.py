@@ -12,11 +12,10 @@ PACKAGE_NAME = {
     "pyro": "pyro",
     "minipyro": "pyro",
     "numpy": "numpyro",
-    "funsor": "funsor",
 }
 
 
-@pytest.fixture(params=["pyro", "minipyro", "numpy", "funsor"])
+@pytest.fixture(params=["pyro", "minipyro", "numpy"])
 def backend(request):
     pytest.importorskip(PACKAGE_NAME[request.param])
     with pyro_backend(request.param):

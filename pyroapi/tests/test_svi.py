@@ -48,8 +48,6 @@ def test_generate_data_plate(backend):
         return x
 
     data = model()
-    if type(data).__module__.startswith('funsor'):
-        pytest.xfail(reason='plate is an input, and does not appear in .shape')
     assert data.shape == (num_points,)
     mean = data.sum().item() / num_points
     assert 1.9 <= mean <= 2.1

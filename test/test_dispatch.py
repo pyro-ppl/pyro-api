@@ -10,7 +10,6 @@ PACKAGE_NAME = {
     "pyro": "pyro",
     "minipyro": "pyro",
     "numpy": "numpyro",
-    "funsor": "funsor",
 }
 
 
@@ -28,7 +27,7 @@ def test_mcmc_interface(model, backend):
         mcmc.summary()
 
 
-@pytest.mark.parametrize('backend', ['funsor', 'minipyro', 'numpy', 'pyro'])
+@pytest.mark.parametrize('backend', ['minipyro', 'numpy', 'pyro'])
 def test_not_implemented(backend):
     pytest.importorskip(PACKAGE_NAME[backend])
     with pyro_backend(backend):
@@ -39,7 +38,7 @@ def test_not_implemented(backend):
 
 
 @pytest.mark.parametrize('model', MODELS)
-@pytest.mark.parametrize('backend', ['funsor', 'minipyro', 'numpy', 'pyro'])
+@pytest.mark.parametrize('backend', ['minipyro', 'numpy', 'pyro'])
 @pytest.mark.xfail(reason='Not supported by backend.')
 def test_model_sample(model, backend):
     pytest.importorskip(PACKAGE_NAME[backend])
@@ -51,7 +50,6 @@ def test_model_sample(model, backend):
 
 @pytest.mark.parametrize('model', MODELS)
 @pytest.mark.parametrize('backend', [
-    pytest.param("funsor", marks=[pytest.mark.xfail(reason="not implemented")]),
     'minipyro',
     'numpy',
     'pyro',

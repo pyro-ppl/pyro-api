@@ -6,12 +6,11 @@
 Pyro API
 ========
 
-The ``pyroapi`` package dynamically dispatches among multiple Pyro backends, including standard Pyro_, NumPyro_, Funsor_, and custom user-defined backends.
+The ``pyroapi`` package dynamically dispatches among multiple Pyro backends, including standard Pyro_, NumPyro_, and custom user-defined backends.
 This package includes both **dispatch** mechanisms for use in model and inference code, and **testing** utilities to help develop and test new Pyro backends.
 
 .. _Pyro: https://pyro.ai
 .. _NumPyro: https://num.pyro.ai
-.. _Funsor: https://funsor.pyro.ai
 
 .. toctree::
    :maxdepth: 2

@@ -79,7 +79,7 @@ def pyro_backend(*aliases, **new_backends):
     Backends can be specified either by name (for standard backends or backends
     registered through :func:`register_backend` ) or by providing kwargs
     mapping module name to backend module name.  Standard backends include:
-    pyro, minipyro, funsor, and numpy.
+    pyro, minipyro, and numpy.
     """
     if aliases:
         assert len(aliases) == 1
@@ -144,14 +144,6 @@ register_backend('minipyro', {
     'ops': 'torch',
     'optim': 'pyro.contrib.minipyro',
     'pyro': 'pyro.contrib.minipyro',
-})
-register_backend('funsor', {
-    'distributions': 'funsor.distributions',
-    'handlers': 'funsor.minipyro',
-    'infer': 'funsor.minipyro',
-    'ops': 'funsor.compat.ops',
-    'optim': 'funsor.minipyro',
-    'pyro': 'funsor.minipyro',
 })
 register_backend('numpy', {
     'distributions': 'numpyro.compat.distributions',
