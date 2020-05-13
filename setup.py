@@ -33,7 +33,7 @@ setup(
     install_requires=[],
     extras_require={
         # PyPi does not like @ versions,
-        # so I comment out the 'test' section when uploading to pypi.
+        # so please comment out the 'test' section when uploading to pypi.
         'test': [
             'flake8',
             'pytest>=5.0',
