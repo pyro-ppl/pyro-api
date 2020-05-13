@@ -39,7 +39,13 @@ def test_not_implemented(backend):
 
 
 @pytest.mark.parametrize('model', MODELS)
-@pytest.mark.parametrize('backend', ['funsor', 'minipyro', 'numpy', 'pyro'])
+@pytest.mark.parametrize('backend', [
+    pytest.param("funsor", marks=[pytest.mark.xfail(
+        reason="temporarily blocked by https://github.com/pyro-ppl/funsor/pull/327")]),
+    'minipyro',
+    'numpy',
+    'pyro',
+])
 @pytest.mark.xfail(reason='Not supported by backend.')
 def test_model_sample(model, backend):
     pytest.importorskip(PACKAGE_NAME[backend])
