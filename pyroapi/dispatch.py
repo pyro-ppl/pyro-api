@@ -146,7 +146,7 @@ register_backend('minipyro', {
     'pyro': 'pyro.contrib.minipyro',
 })
 register_backend('funsor', {
-    'distributions': 'funsor.distributions',
+    'distributions': 'funsor.torch.distributions',
     'handlers': 'funsor.minipyro',
     'infer': 'funsor.minipyro',
     'ops': 'funsor.compat.ops',
