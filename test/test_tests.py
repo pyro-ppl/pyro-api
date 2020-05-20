@@ -16,13 +16,7 @@ PACKAGE_NAME = {
 }
 
 
-@pytest.fixture(params=[
-    "pyro",
-    "minipyro",
-    "numpy",
-    pytest.param("funsor", marks=[pytest.mark.xfail(
-        reason="temporarily blocked by https://github.com/pyro-ppl/funsor/pull/327")]),
-])
+@pytest.fixture(params=["pyro", "minipyro", "numpy", "funsor"])
 def backend(request):
     pytest.importorskip(PACKAGE_NAME[request.param])
     with pyro_backend(request.param):
