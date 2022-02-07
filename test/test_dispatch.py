@@ -16,7 +16,10 @@ PACKAGE_NAME = {
 
 @pytest.mark.filterwarnings("ignore", category=UserWarning)
 @pytest.mark.parametrize('model', MODELS)
-@pytest.mark.parametrize('backend', ['pyro', 'numpy'])
+@pytest.mark.parametrize('backend', [
+    "pyro",
+    pytest.param('numpy', marks=[pytest.mark.xfail(
+        reason="Signature of numpyro MCMC does not match, numpyro/issues/1321")])])
 def test_mcmc_interface(model, backend):
     pytest.importorskip(PACKAGE_NAME[backend])
     with pyro_backend(backend), handlers.seed(rng_seed=20):
