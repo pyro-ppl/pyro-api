@@ -20,6 +20,9 @@ def assert_ok(model, *args, **kwargs):
 
 
 def test_mcmc_run_ok(backend):
+    if backend not in ["pyro", "numpy"]:
+        return
+
     def model():
         pyro.sample("x", dist.Normal(0, 1))
 
