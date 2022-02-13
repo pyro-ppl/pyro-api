@@ -28,3 +28,17 @@ def backend(request):
     pytest.importorskip(PACKAGE_NAME[request.param])
     with pyro_backend(request.param):
         yield
+
+
+# TODO(fehiepsi): Remove the following when the test passes in numpyro.
+_test_mcmc_run_ok = test_mcmc_run_ok  # noqa F405
+
+
+@pytest.mark.parametrize("backend", [
+    "pyro",
+    pytest.param("numpy", marks=[
+        pytest.mark.xfail(reason="numpyro signature for MCMC is not consistent.")])])
+def test_mcmc_run_ok(backend):
+    pytest.importorskip(PACKAGE_NAME[backend])
+    with pyro_backend(backend):
+        _test_mcmc_run_ok(backend)
